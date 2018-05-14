@@ -80,120 +80,8 @@ LANDING PAGE JS
 	04. BACKGROUND ANIMATION JS
 	*===================================*/
 	var $particles_js = $('#banner_bg_effect');
-	console.log("INSIDE")
 	if ($particles_js.length > 0) {
 		particlesJS('banner_bg_effect',
-			// Update your personal code.
-			// {
-			// 	"particles": {
-			// 		"number": {
-			// 			"value": 80,
-			// 			"density": {
-			// 				"enable": true,
-			// 				"value_area": 800
-			// 			}
-			// 		},
-			// 		"color": {
-			// 			"value": "#26B6D4"
-			// 		},
-			// 		"shape": {
-			// 			"type": "polygon",
-			// 			"stroke": {
-			// 				"width": 0,
-			// 				"color": "#000000"
-			// 			},
-			// 			"polygon": {
-			// 				"nb_sides": 5
-			// 			},
-			// 			"image": {
-			// 				"src": "img/github.svg",
-			// 				"width": 100,
-			// 				"height": 100
-			// 			}
-			// 		},
-			// 		"opacity": {
-			// 			"value": 0.4,
-			// 			"random": false,
-			// 			"anim": {
-			// 				"enable": false,
-			// 				"speed": 1,
-			// 				"opacity_min": 0.1,
-			// 				"sync": false
-			// 			}
-			// 		},
-			// 		"size": {
-			// 			"value": 3,
-			// 			"random": true,
-			// 			"anim": {
-			// 				"enable": false,
-			// 				"speed": 40,
-			// 				"size_min": 0.1,
-			// 				"sync": false
-			// 			}
-			// 		},
-			// 		"line_linked": {
-			// 			"enable": true,
-			// 			"distance": 150,
-			// 			"color": "#26B6D4",
-			// 			"opacity": 0.1,
-			// 			"width": 1
-			// 		},
-			// 		"move": {
-			// 			"enable": true,
-			// 			"speed": 6,
-			// 			"direction": "none",
-			// 			"random": false,
-			// 			"straight": false,
-			// 			"out_mode": "out",
-			// 			"bounce": false,
-			// 			"attract": {
-			// 				"enable": false,
-			// 				"rotateX": 600,
-			// 				"rotateY": 1200
-			// 			}
-			// 		}
-			// 	},
-			// 	"interactivity": {
-			// 		"detect_on": "canvas",
-			// 		"events": {
-			// 			"onhover": {
-			// 				"enable": true,
-			// 				"mode": "repulse"
-			// 			},
-			// 			"onclick": {
-			// 				"enable": true,
-			// 				"mode": "push"
-			// 			},
-			// 			"resize": true
-			// 		},
-			// 		"modes": {
-			// 			"grab": {
-			// 				"distance": 400,
-			// 				"line_linked": {
-			// 					"opacity": 1
-			// 				}
-			// 			},
-			// 			"bubble": {
-			// 				"distance": 400,
-			// 				"size": 40,
-			// 				"duration": 2,
-			// 				"opacity": 8,
-			// 				"speed": 3
-			// 			},
-			// 			"repulse": {
-			// 				"distance": 200,
-			// 				"duration": 0.4
-			// 			},
-			// 			"push": {
-			// 				"particles_nb": 4
-			// 			},
-			// 			"remove": {
-			// 				"particles_nb": 2
-			// 			}
-			// 		}
-			// 	},
-			// 	"retina_detect": true
-			// }
 			{
 				"particles": {
 				  "number": {
@@ -308,35 +196,40 @@ LANDING PAGE JS
 		);
 	}
 	
+
 	  
   	/*===================================*
 	05. BACKGROUND ANIMATION JS
 	*===================================*/
-	 $('.roadmap').owlCarousel({
-	     loop: false,
-	     margin: 30,
-	     nav: true,
-	     navText: ['<i class="ion-ios-arrow-back"></i>', '<i class="ion-ios-arrow-forward"></i>'],
-	     responsive: {
-	         0: {
-	             items: 1,
+	let rm = $('.roadmap')
+	if(rm.length != 0){
+		rm.owlCarousel({
+			loop: false,
+			margin: 30,
+			nav: true,
+			navText: ['<i class="ion-ios-arrow-back"></i>', '<i class="ion-ios-arrow-forward"></i>'],
+			responsive: {
+					0: {
+							items: 1,
 
-	         },
-	         380: {
-	             items: 2,
-	             margin: 15,
-	         },
-	         600: {
-	             items: 3
-	         },
-	         1000: {
-	             items: 5
-	         },
-	         1199: {
-	             items: 5
-	         }
-	     }
-	 });
+					},
+					380: {
+							items: 2,
+							margin: 15,
+					},
+					600: {
+							items: 3
+					},
+					1000: {
+							items: 5
+					},
+					1199: {
+							items: 5
+					}
+			}
+	});
+	}
+	 
 	
 	/*===================================*
      06.COUNTDOWN JS
@@ -351,9 +244,12 @@ LANDING PAGE JS
 	/*===================================*
 	 07. VIDEO JS
 	*===================================*/
-	$('.video').magnificPopup({
-		type: 'iframe'
-	});
+	let vid = $('.video')
+	if(vid.length>0){
+		vid.magnificPopup({
+			type: 'iframe'
+		});
+	}
 
 	/*===================================*
 	08. CONTACT FORM JS
@@ -361,7 +257,6 @@ LANDING PAGE JS
 	$("#submitButton").on("click", function(event) {
 	    event.preventDefault();
 			var mydata = $("form").serializeArray();
-			console.log(mydata)
 			let email = mydata.filter(el=>el.name =="email")[0].value
 			let message = mydata.filter(el=>el.name =="message")[0].value
 			let subject = mydata.filter(el=>el.name =="subject")[0].value
@@ -374,13 +269,11 @@ LANDING PAGE JS
 				$("#alert-msg").show();
 			}
 			if(!re.test(String(email).toLowerCase())){
-				console.log(true)
 				$("#alert-msg").removeClass("alert-msg-success");
 				$("#alert-msg").addClass("alert-msg-failure");
 				$("#alert-msg").html("Please enter a valid email...");
 				$("#alert-msg").show();
 			} else {
-				console.log(false)
 				$("#alert-msg").html("");
 				$("#alert-msg").hide();
 			}
@@ -441,11 +334,14 @@ LANDING PAGE JS
 	/*===================================*
 	10. POPUP JS
 	*===================================*/
-	$('.content-popup').magnificPopup({
-		type: 'inline',
-		preloader: true,
-		mainClass: 'mfp-zoom'
-	});
+	let cp = $('.content-popup')
+	if (cp.length>0){
+		cp.magnificPopup({
+			type: 'inline',
+			preloader: true,
+			mainClass: 'mfp-zoom'
+		});
+	}
 	
 	/*===================================*
 	11. ANIMATION JS
