@@ -29,7 +29,7 @@
                 </label>
                 <label>
                   <span>Email</span>
-                  <input name="email" type="email" class="field" placeholder="jenny@example.com" required>
+                  <input id="email" name="email" type="email" class="field" placeholder="jenny@example.com" required>
                 </label>
                 <label>
                   <span>Address</span>
@@ -203,14 +203,12 @@
           </div>
           <div class="line-item demo">
             <div id="demo">
-              <p class="label">Demo in test mode</p>
-              <p class="note">This app is running in test mode. You will
-                <em>not</em> be charged.</p>
-              <p class="note"> Feel free to test payments using a real card or any
-                <a href="https://stripe.com/docs/testing#cards" target="_blank">Stripe test card</a>. Non-card payments will redirect to test pages.
+              <p class="label">15 days trial period</p>
+              <p class="note">We believe you should test our solution first. You will
+                <em>not</em> be charged until 14 days.</p>
+              <p class="note"> Make sure you put the email address you want us to subscribe you to. We will send you morning emails depending on your current time-zone.
               </p>
-              <p class="note">Run this app locally in live mode with your Stripe account to create real payments and see redirects to banking
-                sites.
+              <p class="note">You will be charged on a monthly basis unless you choose to unsubscribe.
               </p>
             </div>
           </div>
@@ -220,6 +218,23 @@
           </div>
         </div>
       </div>
+      <script>  
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+        let email = getParameterByName("email")
+        if(email){
+          console.log(email)
+          document.getElementById("email").value = email
+        }
+      
+      </script>
 
 
       <!-- Latest jQuery --> 
