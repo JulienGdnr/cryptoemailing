@@ -7,16 +7,19 @@ Version      : 1.2
 /*===================================*
 LANDING PAGE JS
 *===================================*/
-document.getElementById("email").addEventListener("keydown", function(e) {
+let em = document.getElementById("email")
+if(em.length>0){
+	
+em.addEventListener("keydown", function(e) {
 	if (!e) { var e = window.event; }
 	// e.preventDefault(); // sometimes useful
 
 	// Enter is pressed
 	if (e.keyCode == 13) { submitFunction(e); }
 }, false);
+}
 
 function submitFunction(e){
-	console.log("test")
 	e.preventDefault();//prevent the default action
 	let email = document.getElementById("email").value
 	window.location = `https://cryptoemailing.com/payment?email=${email}`
@@ -24,10 +27,12 @@ function submitFunction(e){
 
 (function($) {
 	'use strict';
-
+	if(window.location.href.indexOf("payment")==-1){
+		
 	$('form').submit(function (e) {
 		submitFunction(e)
 	});
+	}
 	
 	/*===================================*
 	01. LOADING JS

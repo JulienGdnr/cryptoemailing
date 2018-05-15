@@ -9,7 +9,7 @@ class Store {
     getOrderTotal() {
       return Object.values(this.lineItems).reduce(
         (total, {product, sku, quantity}) =>
-          total + quantity * this.products[product].skus.data[0].price,
+          total + quantity * this.products[product].amount,
         0
       );
     }
@@ -44,80 +44,23 @@ class Store {
   
     // Load the product details.
     async loadProducts() {
-      const productsResponse = {
-        "object": "list",
-        "data": [
-          {
-            "id": "subscription",
-            "object": "product",
-            "active": true,
-            "attributes": [
-              "set"
-            ],
-            "caption": null,
-            "created": 1513848330,
-            "deactivate_on": [],
-            "description": null,
-            "images": [],
-            "livemode": false,
-            "metadata": {},
-            "name": "Monthly subscription",
-            "package_dimensions": null,
-            "shippable": true,
-            "skus": {
-              "object": "list",
-              "data": [
-                {
-                  "id": "pins-collector",
-                  "object": "sku",
-                  "active": true,
-                  "attributes": {
-                    "set": "Morning Emails"
-                  },
-                  "created": 1513848331,
-                  "currency": "eur",
-                  "image": null,
-                  "inventory": {
-                    "quantity": 500,
-                    "type": "finite",
-                    "value": null
-                  },
-                  "livemode": false,
-                  "metadata": {},
-                  "package_dimensions": null,
-                  "price": 999,
-                  "product": "pins",
-                  "updated": 1513848331
-                }
-              ],
-              "has_more": false,
-              "total_count": 1,
-              "url": "/v1/skus?product=pins&active=true"
-            },
-            "type": "good",
-            "updated": 1513848330,
-            "url": null
-          }
-        ],
-        "has_more": false,
-        "url": "/v1/products"
-      }
-      const products = productsResponse.data;
-      products.forEach(product => (this.products[product.id] = product));
+      const response = await fetch("https://api.datapony.co/cryptos/plan", {method: 'GET',headers: {'Content-Type': 'application/json'}});
+
+      const data = await response.json();
+      const products = data.result;
+      console.log(products)
+      this.products[products.id] = products
+      // products.forEach(product => (this.products[product.id] = product));
     }
   
     // Create an order object to represent the line items.
-    async createOrder(currency, items, email, shipping) {
+    async createOrder(email, source) {
       try {
-        console.log(currency, items, email, shipping)
-        const response = await fetch('https://api.datapony.co/cryptos/orders', {
+        const response = await fetch('https://api.datapony.co/cryptos/order', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
-            currency,
-            items,
-            email,
-            shipping,
+            email, source
           }),
         });
         const data = await response.json();
@@ -125,7 +68,7 @@ class Store {
           return {error: data.error};
         } else {
           // Save the current order locally to lookup its status later.
-          this.setActiveOrderId(data.order.id);
+          // this.setActiveOrderId(data.order.id);
           return data.order;
         }
       } catch (err) {
@@ -195,6 +138,7 @@ class Store {
       const orderItems = document.getElementById('order-items');
       const orderTotal = document.getElementById('order-total');
       let currency;
+      console.log("loaded procuts", this.products)
       // Build and append the line items to the order summary.
       for (let [id, product] of Object.entries(this.products)) {
         const randomQuantity = (min, max) => {
@@ -203,15 +147,15 @@ class Store {
           return Math.floor(Math.random() * (max - min + 1)) + min;
         };
         const quantity = 1
-        let sku = product.skus.data[0];
-        let skuPrice = this.formatPrice(sku.price, sku.currency);
-        let lineItemPrice = this.formatPrice(sku.price * quantity, sku.currency);
+        let sku = product;
+        let skuPrice = this.formatPrice(sku.amount, sku.currency);
+        let lineItemPrice = this.formatPrice(sku.amount * quantity, sku.currency);
         let lineItem = document.createElement('div');
         lineItem.classList.add('line-item');
         lineItem.innerHTML = `
           <div class="label">
             <p class="product">${product.name}</p>
-            <p class="sku">${Object.values(sku.attributes).join(' ')}</p>
+            <p class="sku">${product.statement_descriptor}</p>
           </div>
           <p class="count">${quantity} x ${skuPrice}</p>
           <p class="price">${lineItemPrice}</p>`;
