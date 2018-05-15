@@ -28,10 +28,9 @@ function submitFunction(e){
 (function($) {
 	'use strict';
 	if(window.location.href.indexOf("payment")==-1){
-		
-	$('form').submit(function (e) {
-		submitFunction(e)
-	});
+		$('form').submit(function (e) {
+			submitFunction(e)
+		});
 	}
 	
 	/*===================================*
@@ -309,7 +308,7 @@ function submitFunction(e){
 	    $.ajax({
 	        type: "POST",
 	        dataType: "json",
-	        url: "https://api.datapony.co/cryptos",
+	        url: "https://api.datapony.co/cryptos/contact",
 	        data: {email, name, subject, message},
 	        success: function(data) {
 	            if (data.type === "error") {
