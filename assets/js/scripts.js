@@ -283,53 +283,64 @@ function submitFunction(e){
 			let message = mydata.filter(el=>el.name =="message")[0].value
 			let subject = mydata.filter(el=>el.name =="subject")[0].value
 			let name = mydata.filter(el=>el.name =="name")[0].value
+			let error = false
 			var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 			if(!message){
 				$("#alert-msg").removeClass("alert-msg-success");
 				$("#alert-msg").addClass("alert-msg-failure");
 				$("#alert-msg").html("Please enter your message...");
 				$("#alert-msg").show();
+				error = true
 			}
 			if(!re.test(String(email).toLowerCase())){
 				$("#alert-msg").removeClass("alert-msg-success");
 				$("#alert-msg").addClass("alert-msg-failure");
 				$("#alert-msg").html("Please enter a valid email...");
 				$("#alert-msg").show();
-			} else {
-				$("#alert-msg").html("");
-				$("#alert-msg").hide();
-			}
+				error = true
+			} 
 			if(!email){
 				$("#alert-msg").removeClass("alert-msg-success");
 				$("#alert-msg").addClass("alert-msg-failure");
 				$("#alert-msg").html("Please enter your email...");
 				$("#alert-msg").show();
+				error =true
 			}
-	    $.ajax({
-	        type: "POST",
-	        dataType: "json",
-	        url: "https://api.datapony.co/cryptos/contact",
-	        data: {email, name, subject, message},
-	        success: function(data) {
-	            if (data.type === "error") {
-	                $("#alert-msg").removeClass("alert-msg-success");
-	                $("#alert-msg").addClass("alert-msg-failure");
-	            } else {
-	                $("#alert-msg").addClass("alert-msg-success");
-	                $("#alert-msg").removeClass("alert-msg-failure");
-	                $("#first-name").val("Enter Name");
-	                $("#email").val("Enter Email");
-	                $("#subject").val("Enter Subject");
-	                $("#description").val("Enter Message");
-
-	            }
-	            $("#alert-msg").html(data.msg);
-	            $("#alert-msg").show();
-	        },
-	        error: function(xhr, textStatus) {
-	            alert(textStatus);
-	        }
-	    });
+			if(!error){
+				document.getElementById("bitcoin").style.visibility = "visible"
+				$.ajax({
+						type: "POST",
+						dataType: "json",
+						url: "https://api.datapony.co/cryptos/contact",
+						data: {email, name, subject, message},
+						success: function(data) {
+								if (data.type && data.type === "error") {
+										$("#alert-msg").removeClass("alert-msg-success");
+										$("#alert-msg").addClass("alert-msg-failure");
+								} else {
+										$("#alert-msg").addClass("alert-msg-success");
+										$("#alert-msg").removeClass("alert-msg-failure");
+										$("#first-name").val("Enter Name");
+										$("#email").val("Enter Email");
+										$("#subject").val("Enter Subject");
+										$("#description").val("Enter Message");
+										$("#alert-msg").html("Email sent ! We will contact you shortly!");
+	
+								}
+								document.getElementById("bitcoin").style.visibility = "hidden"
+								$("#alert-msg").show();
+						},
+						error: function(xhr, textStatus) {
+							var json = JSON.parse(xhr.responseText)
+							document.getElementById("bitcoin").style.visibility = "hidden"
+								$("#alert-msg").removeClass("alert-msg-success");
+								$("#alert-msg").addClass("alert-msg-failure");
+								$("#alert-msg").html(json.error.message);
+								$("#alert-msg").show();
+						}
+				});
+			}
+			
 	});
 	
 	
