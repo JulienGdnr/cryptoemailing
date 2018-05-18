@@ -55,7 +55,7 @@ class Store {
   
     // Create an order object to represent the line items.
     async createOrder(email, source) {
-      email = email.tolowercase()
+      email = email.toLowerCase()
       try {
         const response = await fetch('https://api.datapony.co/cryptos/order', {
           method: 'POST',
