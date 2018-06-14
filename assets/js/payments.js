@@ -222,7 +222,8 @@
     // Submit handler for our payment form.
     form.addEventListener('submit', async event => {
       event.preventDefault();
-  
+      
+			document.getElementById("bitcoin").style.visibility = "visible"
       // Retrieve the user information from the form.
       const payment = form.querySelector('input[name=payment]:checked').value;
       const name = form.querySelector('input[name=name]').value;
@@ -256,12 +257,20 @@
         source
       );
       console.log(order)
-      mainElement.classList.remove('processing');
-      mainElement.classList.remove('receiver');
-      // Update the note about receipt and shipping (the payment has been fully confirmed by the bank).
-      confirmationElement.querySelector('.note').innerText =
-        'We just sent your receipt to your email address, and your items will be on their way shortly.';
-      mainElement.classList.add('success');
+      document.getElementById("bitcoin").style.visibility = "hidden"
+      if(order && order.error){
+        console.log("OUPS")
+
+      } else {
+        mainElement.classList.remove('processing');
+        mainElement.classList.remove('receiver');
+        // Update the note about receipt and shipping (the payment has been fully confirmed by the bank).
+        confirmationElement.querySelector('.note').innerText =
+          'We just sent your receipt to your email address, and your items will be on their way shortly.';
+        mainElement.classList.add('success');
+        
+      }
+      
   
       // if (payment === 'card') {
       //   // Create a Stripe source from the card information and the owner name.
@@ -480,7 +489,7 @@
           mainElement.classList.remove('receiver');
           // Update the note about receipt and shipping (the payment has been fully confirmed by the bank).
           confirmationElement.querySelector('.note').innerText =
-            'We just sent your receipt to your email address, and your items will be on their way shortly.';
+            'We just sent your receipt to your email address, and your subscription will start right away. Make sure you check your spam folder!';
           mainElement.classList.add('success');
           break;
       }
