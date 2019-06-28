@@ -1,0 +1,68 @@
+[debug] [2019-06-28T04:52:02.611Z] ----------------------------------------------------------------------
+[debug] [2019-06-28T04:52:02.625Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\julie\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy
+[debug] [2019-06-28T04:52:02.626Z] CLI Version:   4.2.0
+[debug] [2019-06-28T04:52:02.626Z] Platform:      win32
+[debug] [2019-06-28T04:52:02.626Z] Node Version:  v10.13.0
+[debug] [2019-06-28T04:52:02.630Z] Time:          Fri Jun 28 2019 06:52:02 GMT+0200 (GMT+02:00)
+[debug] [2019-06-28T04:52:02.630Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-06-28T04:52:02.722Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-06-28T04:52:02.729Z] > authorizing via signed-in user
+[debug] [2019-06-28T04:52:02.735Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/cryptoemailing  
+ 
+[debug] [2019-06-28T04:52:04.269Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'cryptoemailing'...
+[info] 
+[info] i  deploying hosting
+[debug] [2019-06-28T04:52:04.839Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/cryptoemailing/versions  
+
+[debug] [2019-06-28T04:52:06.996Z] <<< HTTP RESPONSE 200
+[info] i  hosting[cryptoemailing]: beginning deploy...
+[debug] [2019-06-28T04:52:07.016Z] Error: EPERM: operation not permitted, scandir 'C:/$Recycle.Bin/S-1-5-18'
+    at Object.readdirSync (fs.js:783:3)
+    at GlobSync._readdir (C:\Users\julie\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\glob\sync.js:288:41)
+    at GlobSync._readdirInGlobStar (C:\Users\julie\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\glob\sync.js:245:17)
+    at GlobSync._readdir (C:\Users\julie\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\glob\sync.js:276:17)
+    at GlobSync._processReaddir (C:\Users\julie\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\glob\sync.js:137:22)
+    at GlobSync._process (C:\Users\julie\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\glob\sync.js:132:10)
+    at GlobSync._processGlobStar (C:\Users\julie\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\glob\sync.js:380:10)
+    at GlobSync._process (C:\Users\julie\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\glob\sync.js:130:10)
+    at GlobSync._processGlobStar (C:\Users\julie\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\glob\sync.js:383:10)
+    at GlobSync._process (C:\Users\julie\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\glob\sync.js:130:10)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2019-06-28T04:52:58.033Z] ----------------------------------------------------------------------
+[debug] [2019-06-28T04:52:58.035Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\julie\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy
+[debug] [2019-06-28T04:52:58.035Z] CLI Version:   4.2.0
+[debug] [2019-06-28T04:52:58.035Z] Platform:      win32
+[debug] [2019-06-28T04:52:58.035Z] Node Version:  v10.13.0
+[debug] [2019-06-28T04:52:58.037Z] Time:          Fri Jun 28 2019 06:52:58 GMT+0200 (GMT+02:00)
+[debug] [2019-06-28T04:52:58.037Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-06-28T04:52:58.050Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-06-28T04:52:58.051Z] > authorizing via signed-in user
+[debug] [2019-06-28T04:52:58.053Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/cryptoemailing  
+ 
+[debug] [2019-06-28T04:52:59.314Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'cryptoemailing'...
+[info] 
+[info] i  deploying hosting
+[debug] [2019-06-28T04:52:59.329Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/cryptoemailing/versions  
+
+[debug] [2019-06-28T04:53:01.255Z] <<< HTTP RESPONSE 200
+[info] i  hosting[cryptoemailing]: beginning deploy...
+[debug] [2019-06-28T04:53:01.287Z] Error: EPERM: operation not permitted, scandir 'C:/$Recycle.Bin/S-1-5-18'
+    at Object.readdirSync (fs.js:783:3)
+    at GlobSync._readdir (C:\Users\julie\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\glob\sync.js:288:41)
+    at GlobSync._readdirInGlobStar (C:\Users\julie\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\glob\sync.js:245:17)
+    at GlobSync._readdir (C:\Users\julie\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\glob\sync.js:276:17)
+    at GlobSync._processReaddir (C:\Users\julie\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\glob\sync.js:137:22)
+    at GlobSync._process (C:\Users\julie\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\glob\sync.js:132:10)
+    at GlobSync._processGlobStar (C:\Users\julie\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\glob\sync.js:380:10)
+    at GlobSync._process (C:\Users\julie\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\glob\sync.js:130:10)
+    at GlobSync._processGlobStar (C:\Users\julie\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\glob\sync.js:383:10)
+    at GlobSync._process (C:\Users\julie\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\glob\sync.js:130:10)
+[error] 
+[error] Error: An unexpected error has occurred.
